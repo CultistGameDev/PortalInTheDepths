@@ -2,6 +2,9 @@ extends Camera3D
 
 var localRotation: Vector2 = Vector2.ZERO
 
+const MAX_Y_ANGLE = deg_to_rad(70)
+const MIN_Y_ANGLE = deg_to_rad(-70)
+
 @export var Sensitivity: Vector2 = Vector2(1.0, 1.0)
 @export var InvertXAxis: bool = true
 @export var InvertYAxis: bool = true
@@ -14,6 +17,9 @@ func _ready():
 func _process(_delta):
 	get_parent().rotate_object_local(Vector3.UP, localRotation.x)
 	rotate_object_local(Vector3.RIGHT, localRotation.y)
+	
+	rotation.x = clampf(rotation.x, MIN_Y_ANGLE, MAX_Y_ANGLE)
+	
 	localRotation = Vector2.ZERO
 
 func _input(event):
@@ -27,3 +33,4 @@ func _input(event):
 			localRotation.y = -event.relative.y * get_process_delta_time()
 		else:
 			localRotation.y = event.relative.y * get_process_delta_time()
+		
