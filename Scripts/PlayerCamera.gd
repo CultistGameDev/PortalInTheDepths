@@ -8,23 +8,22 @@ var localRotation: Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	basis = Basis.IDENTITY
-	rotate_object_local(Vector3.UP, localRotation.x)
+	get_parent().rotate_object_local(Vector3.UP, localRotation.x)
 	rotate_object_local(Vector3.RIGHT, localRotation.y)
+	localRotation = Vector2.ZERO
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		if InvertXAxis:
-			localRotation.x += -event.relative.x * get_process_delta_time()
+			localRotation.x = -event.relative.x * get_process_delta_time()
 		else:
-			localRotation.x += event.relative.x * get_process_delta_time()
+			localRotation.x = event.relative.x * get_process_delta_time()
 		
 		if InvertYAxis:
-			localRotation.y += -event.relative.y * get_process_delta_time()
+			localRotation.y = -event.relative.y * get_process_delta_time()
 		else:
-			localRotation.y += event.relative.y * get_process_delta_time()
+			localRotation.y = event.relative.y * get_process_delta_time()
