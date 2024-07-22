@@ -7,8 +7,3 @@ void fragment() {
 	float mcolor = max(color.r, max(color.g, color.b));
 	COLOR = vec4(mcolor, mcolor, mcolor, 1.0f);
 }
-
-//void light() {
-	// Called for every pixel for every light affecting the material.
-	// Uncomment to replace the default light processing function with this one.
-//}
