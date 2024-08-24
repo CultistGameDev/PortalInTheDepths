@@ -9,11 +9,11 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _init() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
 
-func _physics_process(delta):
+func _physics_process(delta: float):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
